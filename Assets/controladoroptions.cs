@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class controladoroptions : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private UIDocument document;
+    private Button botao;
+
+    private void Awake()
     {
-        
+        document = GetComponent<UIDocument>();
+        botao = document.rootVisualElement.Q<Button>("btnvoltar");
+        botao.RegisterCallback<ClickEvent>(onPlay);
     }
 
-    // Update is called once per frame
-    void Update()
+    void onPlay(ClickEvent evt)
     {
-        
+        SceneManager.LoadScene("Menu");
     }
 }

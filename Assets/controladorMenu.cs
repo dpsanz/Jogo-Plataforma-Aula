@@ -14,10 +14,16 @@ public class controladorMenu : MonoBehaviour
         document = GetComponent<UIDocument>();
         botao = document.rootVisualElement.Q<Button>("btnjogar");
         botao.RegisterCallback<ClickEvent>(onPlay);
+        botao = document.rootVisualElement.Q<Button>("btnoptions");
+        botao.RegisterCallback<ClickEvent>(onOpt);
     }
 
     void onPlay(ClickEvent evt)
     {
         SceneManager.LoadScene("Main");  
+    }
+    void onOpt(ClickEvent evt)
+    {
+        SceneManager.LoadScene("Options");
     }
 }
