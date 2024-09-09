@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
     private float horizontal;
     private Rigidbody2D rb;
     private bool isFacingRight = true;
-    public Animator animator;
+    private Animator animator;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -26,17 +28,14 @@ public class Player : MonoBehaviour
         Flip();
 
         animator.SetFloat("speed", Mathf.Abs(horizontal));
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            this.rb.AddForce(Vector2.up * 5f, ForceMode2D.Impulse);
+        }
+        Flip();
         
-        /*
-        if(Input.GetKey(KeyCode.Space))
-        {
-            Debug.Log("Apertou Espaço");
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("Clicou");
-        }
-        */
+       
 
         
 
